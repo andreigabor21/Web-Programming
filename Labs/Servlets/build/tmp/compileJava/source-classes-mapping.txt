@@ -1,0 +1,12 @@
+ro/ubb/lab8_good/controller/LoginController.java
+ ro.ubb.lab8_good.controller.LoginController
+ro/ubb/lab8_good/model/Authenticator.java
+ ro.ubb.lab8_good.model.Authenticator
+ro/ubb/lab8_good/model/PlayData.java
+ ro.ubb.lab8_good.model.PlayData
+ro/ubb/lab8_good/controller/PlayController.java
+ ro.ubb.lab8_good.controller.PlayController
+ro/ubb/lab8_good/model/User.java
+ ro.ubb.lab8_good.model.User
+ro/ubb/lab8_good/model/Board.java
+ ro.ubb.lab8_good.model.Board

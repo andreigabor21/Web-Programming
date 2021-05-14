@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combo-Box JS</title>
+</head>
+<body>
+    <h2>Choose from combo-box app</h2>
+    <hr>
+    Choose county:
+    <select name="select1" id="select1" onchange="populate('select1', 'select2')">
+        <option value=""></option>
+        <option value="cluj">Cluj</option>
+        <option value="botosani">Botosani</option>
+        <option value="salaj">Salaj</option>
+        <option value="suceava">Suceava</option>
+    </select>
+    <hr>
+
+    Choose city:
+    <select name="select2" id="select2"></select>
+    <hr>
+
+    <script src="index.js"></script>
+</body>
+</html>

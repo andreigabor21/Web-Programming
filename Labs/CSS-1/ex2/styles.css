@@ -1,0 +1,38 @@
+.vertical-menu {
+    width: 270px;
+}
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    position: relative;
+}
+
+.vertical-menu a.title {
+    background-color: cadetblue;
+    color: indigo;
+}
+
+.submenu{
+    position: absolute;
+    left:100%;
+    background:white;
+    border: 1px solid black;
+    width: 12vw;
+    display: none;
+}
+
+.submenu-item {
+    border-bottom: 1px solid black;
+
+}
+
+.submenu-item:hover {
+    background-color: lightgrey;
+}
+
+a:hover .submenu{
+    display: block;
+}

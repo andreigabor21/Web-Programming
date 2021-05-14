@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add</h1>
+
+<div class="container">
+    <div class="row">
+        <form method="POST" class="col-12" action="Add">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" name="author" placeholder="Enter author" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" class="form-control" id="type" name="type" placeholder="Enter type" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/Dashboard" type="button" class="btn btn-danger">Back</a>
+        </form>
+    </div>
+</div>

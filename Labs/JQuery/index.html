@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Laborator 5</h1>
+    </header>
+
+    <div class="container">
+
+        <div id="content">
+            <form id="myform">
+                <label for="nume">Nume:</label>
+                <input type="text" name="nume" id="nume"><br>
+                <label for="prenume">Prenume:</label>
+                <input type="text" name="prenume" id="prenume"><br>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email"><br>
+                <label for="parola">Parola:</label>
+                <input type="text" name="parola" id="parola"><br>
+                <button id="myBtn"><span>Detalii</span></button>
+                <h4>Detalii scrise:</h4>
+                <div id="result"></div>
+            </form>
+        </div>
+
+        <div id="myModal" class="modal">
+            <form class="modal-content">
+                <h2>Completeaza formularul</h2>
+                Input 1
+                <input type="text" id="input1"><br>
+                Input 2
+                <input type="text" id="input2"><br>
+                Input 3
+                <input type="text" id="input3"><br>
+                Input 4
+                <input type="text" id="input4"><br>
+                <input type="submit" value="Submit" class="close">
+            </form>
+        </div>
+
+    </div>
+
+<script>
+
+    $('#myBtn').click(function(e) {
+        e.preventDefault();
+        $('#myModal').css('display', 'block');
+    })
+
+    $('.modal-content').submit(function(e) {
+        e.preventDefault();
+        var val1 = $("#input1").val();
+        var val2 = $("#input2").val();
+        var val3 = $("#input3").val();
+        var val4 = $("#input4").val();
+        var concatenatedValue = val1 + " " + val2 + " " + val3 + " " + val4;
+        $('#result').text(concatenatedValue);
+        $('#myModal').css('display', 'none');
+    });
+
+</script>
+
+</body>
+</html>
