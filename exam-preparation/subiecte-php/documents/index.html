@@ -1,0 +1,124 @@
+<h3>SALUT</h3>
+
+<table class="documents">
+</table>
+
+<form action="update.php" method="post">
+    <input type="text" name="id" placeholder="id">
+    <input type="text" name="keyword1" placeholder="keyword1">
+    <input type="text" name="keyword2" placeholder="keyword2">
+    <input type="text" name="keyword3" placeholder="keyword3">
+    <input type="text" name="keyword4" placeholder="keyword4">
+    <input type="text" name="keyword5" placeholder="keyword5">
+    <button type="submit">Update</button>
+</form>
+
+<table class="websites">
+</table>
+
+<input type="text" id="search" name="search" placeholder="Search by keywords...">
+<button onclick="search()">Search</button>
+
+<table class="filter"></table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function search() {
+        var words = $("#search").val();
+        $.get("filter.php",
+            {word: words},
+        ).done(data => populate_filter(data));
+    }
+
+    function populate_filter(data){
+        console.log(data);
+        data = $.parseJSON(data);
+
+        var documents = "<tr>\n" +
+            "        <th>ID</th>\n" +
+            "        <th>idWebSite</th>\n" +
+            "        <th>Name</th>\n" +
+            "        <th>Keyword1</th>\n" +
+            "        <th>Keyword2</th>\n" +
+            "        <th>Keyword3</th>\n" +
+            "        <th>Keyword4</th>\n" +
+            "        <th>Keyword5</th>\n" +
+            "    </tr>";
+        console.log(data);
+        for(let document of data) {
+            documents += "<tr>" +
+                "<td>" + document.id + "</td>" +
+                "<td>" + document.idWebSite + "</td>" +
+                "<td>" + document.name + "</td>" +
+                "<td>" + document.keyword1 + "</td>" +
+                "<td>" + document.keyword2 + "</td>" +
+                "<td>" + document.keyword3 + "</td>" +
+                "<td>" + document.keyword4 + "</td>" +
+                "<td>" + document.keyword5 + "</td>" +
+                "</tr>";
+        }
+        $(".filter").html(documents);
+    }
+
+    function populate(data){
+        console.log(data);
+        data = $.parseJSON(data);
+
+        var documents = "<tr>\n" +
+            "        <th>ID</th>\n" +
+            "        <th>idWebSite</th>\n" +
+            "        <th>Name</th>\n" +
+            "        <th>Keyword1</th>\n" +
+            "        <th>Keyword2</th>\n" +
+            "        <th>Keyword3</th>\n" +
+            "        <th>Keyword4</th>\n" +
+            "        <th>Keyword5</th>\n" +
+            "    </tr>";
+        console.log(data);
+        for(let document of data) {
+            documents += "<tr>" +
+                "<td>" + document.id + "</td>" +
+                "<td>" + document.idWebSite + "</td>" +
+                "<td>" + document.name + "</td>" +
+                "<td>" + document.keyword1 + "</td>" +
+                "<td>" + document.keyword2 + "</td>" +
+                "<td>" + document.keyword3 + "</td>" +
+                "<td>" + document.keyword4 + "</td>" +
+                "<td>" + document.keyword5 + "</td>" +
+                "</tr>";
+        }
+        $(".documents").html(documents);
+    }
+
+    $(document).ready(function(){
+        $.get("getAll.php", data => populate(data));
+    });
+
+    ////////////////////////
+
+    function populate_web(data){
+        console.log(data);
+        data = $.parseJSON(data);
+
+        var documents = "<tr>\n" +
+            "        <th>ID</th>\n" +
+            "        <th>URL</th>\n" +
+            "        <th>Number of Documents</th>\n" +
+            "    </tr>";
+        console.log(data);
+        for(let document of data) {
+            documents += "<tr>" +
+                "<td>" + document.id + "</td>" +
+                "<td>" + document.url + "</td>" +
+                "<td>" + document.nr + "</td>" +
+                "</tr>";
+        }
+        $(".websites").html(documents);
+    }
+
+    $(document).ready(function(){
+        $.get("getWebsites.php", data => populate_web(data));
+    });
+
+</script>

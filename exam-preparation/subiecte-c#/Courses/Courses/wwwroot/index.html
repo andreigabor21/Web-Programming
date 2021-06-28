@@ -1,0 +1,80 @@
+﻿<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<input type="text" name="name" id="course" placeholder="Course name...">
+<button onclick="getParticipants()">Get participants</button>
+<!--<input type="text" name="channel" id="course">-->
+<!--<button onclick="subscribeNew()">Subscribe</button>-->
+<ul class="participants">
+</ul>
+
+<input type="text" name="name" id="student" placeholder="Student name...">
+<button onclick="getCoursesOfStudent()">Get Courses</button>
+
+<ul class="courses">
+</ul>
+
+<input type="text" name="student_name" id="student_name" placeholder="Student name...">
+<input type="text" name="course_name" id="course_name" placeholder="Course name...">
+<input type="text" name="grade" id="grade" placeholder="Grade...">
+<button onclick="giveGrade()">Give Grade</button>
+
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function populate_participants(data){
+        console.log(data);
+        var courses = "";
+        for(let course of data) {
+            courses += "<li>";
+            courses += course.participants + "</li>";
+        }
+        $(".participants").html(courses);
+    }
+
+    function getParticipants() {
+        var course = $("#course").val();
+        console.log(course);
+        $.get("api/Course/" + name, function(data){
+            populate_participants(data);
+        });
+    }
+
+    function populate_courses(data){
+        console.log(data);
+        var courses = "";
+        for(let course of data) {
+            courses += "<li>";
+            courses += course.courseName + " Grades: " + course.grades + "</li>";
+        }
+        $(".courses").html(courses);
+    }
+    
+    function getCoursesOfStudent() {
+        var name = $("#student").val();
+        console.log(name);
+        $.get("api/Course/Courses/" + name, function(data){
+            populate_courses(data);
+        });
+    } 
+
+    function giveGrade() {
+        var student_name = $("#student_name").val();
+        var course_name = $("#course_name").val();
+        var grade = $("#grade").val();
+        console.log(student_name, course_name, grade);
+        $.post("api/Course", {"student": student_name, "course": course_name, "grade": grade});
+    }
+
+    // $(document).ready(function(){
+    //     $.get("api/Channel/subscribed", data => getMyChannels(data));
+    // });
+
+</script>

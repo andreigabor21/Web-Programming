@@ -1,0 +1,97 @@
+﻿<html>
+<head>
+    <title>Main</title>
+</head>
+<body>
+
+<ul class="teams">
+</ul>
+
+<h2>My teams:</h2>
+<ul class="my_teams">
+</ul>
+
+<input type='text' name="team" id='team' placeholder="Team Names...">
+<input type='text' name="player" id='player' placeholder="Player Name...">
+<button onClick=add()>Add</button>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function add() {
+        var teams = $("#team").val();
+        var player =  $("#player").val();
+        $.post("add.php",
+            {"teams": teams, "player": player}
+        ).done(function (result) {
+            console.log(result);
+        });
+    }
+
+    function populate(data){
+        console.log(data);
+        data = $.parseJSON(data);
+        var posts = "";
+        for(let post of data) {
+            posts += "<li>";
+            posts += "captain ID: " + post.captainId + " " +
+                "name: " + post.name + " " +
+                "description: " + post.description + " " +
+                "members: " + post.members;
+            posts += "</li>";
+        }
+        $(".teams").html(posts);
+    }
+
+    $(document).ready(function(){
+        $.get("getAll.php", data => populate(data));
+    });
+
+    function populate_my(data){
+        console.log(data);
+        data = $.parseJSON(data);
+        var posts = "";
+        for(let post of data) {
+            posts += "<li>";
+            posts += "name: " + post.name;
+            posts += "</li>";
+        }
+        $(".my_teams").html(posts);
+    }
+
+    $(document).ready(function(){
+        $.get("getMy.php", data => populate_my(data));
+    });
+
+    function update(id) {
+        var topicId = $("#post"+id+"-topicId").val();
+        var text =  $("#post"+id+"-text").val();
+        console.log(topicId, text);
+        $.ajax({
+            type: 'PUT',
+            url: 'api/Post/' + id,
+            contentType: 'application/json',
+            data: JSON.stringify({id: 1, user: "user", 'topicId': topicId, 'text': text, date: 0})
+        }).done(function () {
+            console.log('SUCCESS');
+        }).fail(function (msg) {
+            console.log('FAIL');
+        }).always(function (msg) {
+            console.log('ALWAYS');
+        });
+    }
+
+    function checkNew() {
+        $.get("api/Post/new", function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+            if (data !== "-")
+                alert("Someone added a new article!" + data);
+        });
+    }
+
+    // setInterval(checkNew, 3000);
+
+</script>

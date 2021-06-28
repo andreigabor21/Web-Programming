@@ -1,0 +1,54 @@
+1. Journals/Articles in JSP:
+	* get articles from journal (filter by username);
+	* add new article to a journal, if journal doesn't exists adds it;
+	* notification;
+
+2. Topics/Posts in JSP:
+	* update a post;
+	* add new post to topic, if topic doesn t exists add it too;
+	* notification;
+
+3. FamilyRelations/ Users in JSP:
+	* add new record in family relation;
+	* logare dupa username + mama sau tata;
+	* display the user's father descending line and mother descending line;
+
+4. Orders/ Products in JSP (fara Ajax!):
+	* add a product;
+	* display products who's name starts with a string;
+	* choose several orders, submit, cancel mai multe pagini etc.;
+
+5. Channels/Persons in ASP:
+	* display all channels owned by a person;
+	*display all channeels current user is subscribed to (subscribers list as a string);
+	* add username to string, if already there regex and update date;
+
+6. Topics/Posts in ASP:
+	* update a post;
+	* add new post to topic, if topic doesn t exists add it too;
+	* notification;
+
+7. Courses/Persons in ASP:
+	* display all participants of a course (participants ii string in Courses);
+	* display all courses to which a specific student participates (daca e prezent in stringul de participanti);
+	* add grade to student, if student not in participants add it too, else adauga numai grade ul;	
+
+8. Channels/Persons in PHP:
+	* display all channels owned by a person (cautit ownerul in prima tabela dupa username, dupa in a doua dupa ownerid);
+	* display all channels current user is subscribed to  (daca e prezent in stringul de subscriberi);
+	* subscribe to a channel (cu regex);
+
+9. Websites/Documents in PHP:
+	* update keywords of a document;
+	* display all websites together with number of documents for each site (selectul ala cu join);
+	* find all documents that have exactly 3 keyword matches;
+
+10. Players/Teams in JSP, C#, PHP:
+	* display all teams
+	* display filtered by session
+	* assign player to list of teams
+
+11. Authors in toate:
+	* add new document
+	* display interleaved
+	* the most largest nr of authors

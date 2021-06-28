@@ -1,0 +1,86 @@
+﻿<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<input type='text' name="name" id='name' placeholder="Name...">
+<input type='text' name="contents" id='contents' placeholder="Contents...">
+<button onClick=add()>Add</button>
+
+<div class="documents"></div>
+
+<h2>Document with the largest number of authors:</h2>
+<div class="most"></div>
+
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function add() {
+        var name = $("#name").val();
+        var contents =  $("#contents").val();
+        console.log(name, contents);
+        $.post("api/Document",
+            {"name": name, "contents": contents}
+        );
+    }
+
+    /*function populate(data){
+        console.log(data);
+
+        var posts = "";
+        for(let post of data) {
+            posts += "<li>";
+            posts += "User: " + post.user + " " + 
+                      "Topic ID: " + post.topicId + " " +
+                       "Text: " + post.text + " " +
+                       "Date: " + post.date;
+            posts += `<input type='text' name="topicId" id='post${post.id}-topicId' placeholder="Topic ID...">`;
+            posts += `<input type='text' name="text" id='post${post.id}-text' placeholder="Text...">`;
+            posts += `<button onClick=update(${post.id})>Update</button>`;
+            posts += "</li>";
+        }
+        $(".posts").html(posts);
+    }*/
+
+    $(document).ready(function(){
+        $.get("api/Document", data => $(".documents").html(data));
+    });
+
+    $(document).ready(function(){
+        $.get("api/Document/most", data => $(".most").html(data));
+    });
+    
+    function update(id) {
+        var topicId = $("#post"+id+"-topicId").val();
+        var text =  $("#post"+id+"-text").val();
+        console.log(topicId, text);
+        $.ajax({
+            type: 'PUT',
+            url: 'api/Post/' + id,
+            contentType: 'application/json',
+            data: JSON.stringify({id: 1, user: "user", 'topicId': topicId, 'text': text, date: 0})
+        }).done(function () {
+            console.log('SUCCESS');
+        }).fail(function (msg) {
+            console.log('FAIL');
+        }).always(function (msg) {
+            console.log('ALWAYS');
+        });
+    }
+    
+
+    function checkNew() {
+        $.get("api/Post/new", function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+            if (data !== "-")
+                alert("Someone added a new article!" + data);
+        });
+    }
+
+    // setInterval(checkNew, 3000);
+</script>
